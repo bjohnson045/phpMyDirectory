@@ -1,0 +1,8 @@
+Please obtain a Yelp.com API key to use with this addon.
+
+The /modules/plugins/yelp_reviews/yelp_reviews.tpl file is used to style the Yelp Reviews.
+
+Include the variable $yelp_reviews in listing_default.tpl to display the reviews on listings.
+
+Example:
+<?php echo $yelp_reviews; ?>

@@ -1,0 +1,2 @@
+<a class="list-group-item" href="admin_sitemap_xml.php"><i class="fa fa-link fa-lg"></i> <?php echo $lang['admin_sitemap_xml']; ?></a>
+<a class="list-group-item" href="admin_sitemap_xml.php?action=add"><i class="fa fa-plus fa-lg"></i> <?php echo $lang['admin_sitemap_xml_add']; ?></a>

@@ -1,0 +1,2 @@
+<a class="list-group-item" href="admin_jobs_categories.php"><i class="fa fa-building-o fa-lg"></i> <?php echo $lang['admin_jobs_categories']; ?></a>
+<a class="list-group-item" href="admin_jobs_categories.php?action=add"><i class="fa fa-plus fa-lg"></i> <?php echo $lang['admin_jobs_categories_add']; ?></a>

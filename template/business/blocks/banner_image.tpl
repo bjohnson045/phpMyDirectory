@@ -1,0 +1,1 @@
+<img id="banner<?php echo $id; ?>" class="img-responsive banner banner_type<?php echo $type_id; ?>" src="<?php echo $image_url; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="<?php echo $alt_text; ?>" />

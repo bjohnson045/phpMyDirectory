@@ -1,0 +1,1 @@
+<label class="<?php echo $classes; ?>"<?php echo $attributes; ?>><?php echo $label; ?><?php if(isset($suffix)) { ?><?php echo $suffix; ?><?php } ?><?php if(isset($required_text) OR isset($help)) { ?><em><?php echo $help; ?><?php echo $required_text; ?></em><?php } ?></label>

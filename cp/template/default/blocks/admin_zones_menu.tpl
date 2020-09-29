@@ -1,0 +1,2 @@
+<a class="list-group-item" href="admin_zones.php"><i class="fa fa-columns"></i> <?php echo $lang['admin_zones']; ?></a>
+<a class="list-group-item" href="admin_zones.php?action=add"><i class="fa fa-plus"></i> <?php echo $lang['admin_zones_add']; ?></a>

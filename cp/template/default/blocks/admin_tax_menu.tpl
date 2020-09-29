@@ -1,0 +1,2 @@
+<a class="list-group-item" href="admin_tax.php"><div class="icon icon_page"></div><?php echo $lang['admin_tax_rates']; ?></a>
+<a class="list-group-item" href="admin_tax.php?action=add"><div class="icon icon_page_add"></div><?php echo $lang['admin_tax_add']; ?></a>

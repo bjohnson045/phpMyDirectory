@@ -1,0 +1,2 @@
+<a class="list-group-item" href="admin_feeds_external.php"><div class="icon icon_rss"></div><?php echo $lang['admin_feeds_external']; ?></a>
+<a class="list-group-item" href="admin_feeds_external.php?action=add"><div class="icon icon_rss_add"></div><?php echo $lang['admin_feeds_external_add']; ?></a>

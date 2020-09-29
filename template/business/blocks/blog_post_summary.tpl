@@ -1,0 +1,4 @@
+<h2><a href="<?php echo $url; ?>" title="<?php echo $this->escape($title); ?>"><?php echo $this->escape($title); ?></a></h2>
+<p class="text-muted"><small><?php echo $lang['public_blog_by']; ?> <?php echo $this->escape($user); ?> <?php echo $lang['public_blog_on']; ?> <?php echo $date; ?><?php if($categories) { ?> <?php echo $lang['public_blog_in']; ?> <?php echo $categories; ?><?php } ?></small></p>
+<p><?php echo $this->escape($content); ?></p>
+<p><a href="<?php echo $url; ?>" title="<?php echo $this->escape($lang['public_blog_full_story']); ?>"><?php echo $lang['public_blog_full_story']; ?></a><?php if($comments) { ?> • <?php if($comments_count) { ?><a href="<?php echo $url; ?>#comments" title="<?php echo $this->escape($lang['public_blog_comments']); ?>"><?php echo $lang['public_blog_comments']; ?></a><?php } else { ?><?php echo $lang['public_blog_comments']; ?><?php } ?> (<?php echo $comments_count; ?>)<?php } ?></p>

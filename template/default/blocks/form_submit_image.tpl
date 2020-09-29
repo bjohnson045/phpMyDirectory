@@ -1,0 +1,1 @@
+<input type="image" class="<?php echo $class; ?>" value="<?php echo $this->escape($value); ?>" alt="<?php echo $alt; ?>"<?php echo $attributes; ?>>

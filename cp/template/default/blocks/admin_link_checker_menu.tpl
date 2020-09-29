@@ -1,0 +1,4 @@
+<a class="list-group-item" href="admin_link_checker.php?status=dead"><div class="icon icon_x_red"></div><?php echo $lang['admin_link_checker_dead']; ?></a>
+<a class="list-group-item" href="admin_link_checker.php?status=no_reciprocal"><div class="icon icon_notice"></div><?php echo $lang['admin_link_checker_no_reciprocal']; ?></a>
+<a class="list-group-item" href="admin_link_checker.php?status=no_reciprocal_required"><div class="icon icon_error"></div><?php echo $lang['admin_link_checker_no_reciprocal']; ?> (<?php echo $lang['admin_link_checker_required']; ?>)</a>
+<a class="list-group-item" id="link_checker_check" href="admin_link_checker.php?action=refresh"><div class="icon icon_arrow_revert"></div><?php echo $lang['admin_link_checker_check_all']; ?></a>

@@ -1,0 +1,2 @@
+<input type="text" class="text <?php echo $class; ?>"<?php echo $attributes; ?> />
+<p class="note"><img src="<?php echo BASE_URL; ?>/includes/security_text.php?random=<?php echo $random; ?>" alt="" /></p>

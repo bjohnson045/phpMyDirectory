@@ -1,0 +1,3 @@
+Remove any instances of the following code from your template files:
+
+<?php echo $this->block('events_calendar'); ?>

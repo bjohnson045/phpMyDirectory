@@ -1,0 +1,37 @@
+h2, h3 {
+    color: #666;
+}
+
+legend {
+    color: #666;
+    border-bottom: 2px solid #E5E5E5;;
+}
+
+label {
+    font-weight: normal;
+}
+
+form .help-block {
+    font-size: 11px;
+    margin-bottom: 0px;
+}
+
+.row-header {
+    padding: 20px 0px 20px 0px;
+}
+
+.row-complete {
+    text-align: center;
+    margin-top: 10px;
+    padding-left: 0px !important;
+}
+
+#terms {
+    font-size: 11px;
+}
+
+#termsBox .modal-body {
+    overflow-y: scroll;
+    height: 400px;
+}
+

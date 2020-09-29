@@ -1,0 +1,21 @@
+#Sitemap: /sitemap.xml
+
+User-agent: *
+Disallow: /cache/
+Disallow: /cp/
+Disallow: /docs/
+Disallow: /files/
+Disallow: /includes/
+Disallow: /members/
+Disallow: /modules/
+Disallow: /template/
+Disallow: /cron.php
+Disallow: /maintenance.php
+Disallow: /ajax.php
+Disallow: /error.html
+Disallow: /*/send-message.html
+Disallow: /*/send-message-friend.html
+Disallow: /*/add-review.html
+Disallow: /*/suggestion.html
+Disallow: /*/claim.html
+Disallow: /out-*.html

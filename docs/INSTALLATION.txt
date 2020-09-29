@@ -1,0 +1,2 @@
+Please view the online manual for more details.
+http://manual.phpmydirectory.com

@@ -1,0 +1,2 @@
+<a class="list-group-item" href="admin_blocks.php"><i class="fa fa-th-large"></i> <?php echo $lang['admin_blocks']; ?></a>
+<a class="list-group-item" href="admin_blocks.php?action=add"><i class="fa fa-plus"></i> <?php echo $lang['admin_blocks_add']; ?></a>

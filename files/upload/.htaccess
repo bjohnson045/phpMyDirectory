@@ -1,0 +1,3 @@
+<FilesMatch "\.csv$">
+deny from all
+</FilesMatch>

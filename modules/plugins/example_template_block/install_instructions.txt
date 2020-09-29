@@ -1,0 +1,5 @@
+These are some example instructions to follow for installing a plugin.
+
+This is loaded from the install_instructions.txt file within the plugin folder.
+
+This could be used to provide some information before a plugin gets installed.

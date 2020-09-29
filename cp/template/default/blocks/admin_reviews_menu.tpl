@@ -1,0 +1,11 @@
+<a class="list-group-item" href="admin_ratings.php"><div class="icon icon_star"></div><?php echo $lang['admin_ratings']; ?></a>
+<a class="list-group-item" href="admin_ratings.php?action=add"><div class="icon icon_star_add"></div><?php echo $lang['admin_ratings_add']; ?></a>
+<a class="list-group-item" href="admin_ratings_categories.php"><div class="icon icon_folder"></div><?php echo $lang['admin_ratings_categories']; ?></a>
+<a class="list-group-item" href="admin_ratings_categories.php?action=add"><div class="icon icon_folder_add"></div><?php echo $lang['admin_ratings_categories_add']; ?></a>
+<a class="list-group-item" href="admin_reviews.php"><div class="icon icon_review"></div><?php echo $lang['admin_reviews']; ?></a>
+<a class="list-group-item" href="admin_reviews.php?status=active"><div class="icon icon_review"></div><?php echo $lang['admin_reviews_active']; ?></a>
+<a class="list-group-item" href="admin_reviews.php?status=pending"><div class="icon icon_review"></div><?php echo $lang['admin_reviews_pending']; ?></a>
+<a class="list-group-item" href="admin_reviews.php?action=add"><div class="icon icon_review_add"></div><?php echo $lang['admin_reviews_add']; ?></a>
+<a class="list-group-item" href="admin_reviews_comments.php"><div class="icon icon_comments"></div><?php echo $lang['admin_reviews_comments']; ?></a>
+<a class="list-group-item" href="admin_reviews_comments.php?status=active"><div class="icon icon_comments"></div><?php echo $lang['admin_reviews_comments_active']; ?></a>
+<a class="list-group-item" href="admin_reviews_comments.php?status=pending"><div class="icon icon_comments"></div><?php echo $lang['admin_reviews_comments_pending']; ?></a>

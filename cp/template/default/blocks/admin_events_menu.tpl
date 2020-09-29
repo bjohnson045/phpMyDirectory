@@ -1,0 +1,4 @@
+<a id="event_search_link" class="list-group-item" href="admin_events.php?action=search"><div class="icon icon_search"></div><?php echo $lang['admin_events_search']; ?></a>
+<a class="list-group-item" href="admin_events.php?action=add"><div class="icon icon_page_add"></div><?php echo $lang['admin_events_add']; ?></a>
+<a class="list-group-item" href="admin_events_categories.php"><div class="icon icon_folder"></div><?php echo $lang['admin_events_categories']; ?></a>
+<a class="list-group-item" href="admin_events_categories.php?action=add"><div class="icon icon_folder_add"></div><?php echo $lang['admin_events_categories_add']; ?></a>
