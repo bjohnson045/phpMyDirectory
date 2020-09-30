@@ -1,0 +1,1 @@
+<input type="image" class="submit <?php echo $class; ?>" value="<?php echo $value; ?>" alt="<?php echo $alt; ?>"<?php echo $attributes; ?>>

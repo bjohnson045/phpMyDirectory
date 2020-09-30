@@ -1,0 +1,87 @@
+#Options +FollowSymLinks
+#Options -MultiViews
+#Options All -Indexes
+
+# This can be uncommented to compress js and css files
+#<IfModule mod_deflate.c>
+#<FilesMatch "\.(js|css)$">
+#    SetOutputFilter DEFLATE
+#</FilesMatch>
+#</IfModule>
+
+# This can be uncommented to set cache control for image, js, and css files
+#Header unset ETag
+#FileETag None
+#<FilesMatch "(?i)^.*\.(ico|flv|swf|jpg|jpeg|png|gif|js|css)$">
+#Header unset Last-Modified
+#Header set Expires "Fri, 21 Dec 2012 00:00:00 GMT"
+#Header set Cache-Control "public, no-transform"
+#</FilesMatch>
+
+<FilesMatch "\.(htaccess|tpl)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+#RewriteRule ^([a-zA-Z]+)\.html$ $1.php [L]
+
+#Handle all category links.  Static category text followed by ID, followed by path
+#The "category" text here needs to be changed if the language variable category is changed
+RewriteRule ^category\/(.+/)location/(.+)$ browse_categories.php?id=$1&location=$2 [L,NC,QSA]
+RewriteRule ^category\/(.+)$ browse_categories.php?id=$1 [L,NC,QSA]
+
+#Handle all location links.  Static location text followed by ID, followed by path
+#The "location" text here needs to be changed if the language variable location is changed
+RewriteRule ^location\/(.+)$ browse_locations.php?id=$1 [L,NC,QSA]
+
+#Rewrite pages
+RewriteRule ^pages\/(.+)\.html$ page.php?id=$1 [L,NC]
+
+#Rewrite Blog
+RewriteRule ^blog.html$ blog.php [L,NC,QSA]
+RewriteRule ^blog\/([^/]+)-([0-9]+).html$ blog_post.php?id=$2 [L,NC]
+RewriteRule ^blog\/category\/(.+)-([0-9]+).html$ blog.php?category_id=$2 [L,NC,QSA]
+
+#Rewrite listing/banner website out
+RewriteRule ^out-([0-9]+)\.html$ out.php?listing_id=$1 [L]
+RewriteRule ^out-([0-9]+)-([0-9]+)\.html$ out.php?listing_id=$1&banner_id=$2 [L]
+
+#Rewrite listings
+#Ignore any physical files
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^/]+)\.html$ listing.php?id=$1 [L,NC]
+RewriteRule ^([^/]+)/images\.html$ listing_images.php?id=$1 [L,NC,QSA]
+RewriteRule ^([^/]+)/send-message\.html$ listing_email.php?id=$1 [L,NC]
+RewriteRule ^([^/]+)/send-message-friend\.html$ listing_email_friend.php?id=$1 [L,NC]
+RewriteRule ^([^/]+)/reviews\.html$ listing_reviews.php?id=$1 [L,NC,QSA]
+RewriteRule ^([^/]+)/add-review\.html$ listing_reviews_add.php?id=$1 [L,NC]
+RewriteRule ^([^/]+)/classifieds\.html$ listing_classifieds.php?id=$1 [L,NC,QSA]
+RewriteRule ^([^/]+)/locations\.html$ listing_locations.php?id=$1 [L,NC,QSA]
+RewriteRule ^([^/]+)/documents\.html$ listing_documents.php?id=$1 [L,NC,QSA]
+RewriteRule ^([^/]+)/events\.html$ listing_events.php?id=$1 [L,NC,QSA]
+RewriteRule ^([^/]+)/jobs\.html$ listing_jobs.php?id=$1 [L,NC,QSA]
+RewriteRule ^([^/]+)/suggestion\.html$ listing_suggestion.php?id=$1 [L,NC]
+RewriteRule ^([^/]+)/claim\.html$ listing_claim.php?id=$1 [L,NC]
+
+#Rewrite classifieds
+RewriteRule ^classified/[^/]+-([0-9]+)\.html$ classified.php?id=$1 [L,NC,QSA]
+RewriteRule ^classified/[^/]+-([0-9]+)/images\.html$ classified_images.php?classified_id=$1 [L,NC]
+
+#Rewrite events
+RewriteRule ^event/[^/]+-([0-9]+)\.html$ event.php?id=$1 [L,NC,QSA]
+
+#Rewrite jobs
+RewriteRule ^job/[^/]+-([0-9]+)\.html$ job.php?id=$1 [L,NC,QSA]
+
+#Rewrite sitemap
+RewriteRule ^sitemap.xml$ xml.php?type=sitemap [L]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ 404.php?id=$1 [L,NC]
+
+</IfModule>

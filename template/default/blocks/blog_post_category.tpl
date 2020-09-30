@@ -1,0 +1,1 @@
+<a href="<?php echo $url; ?>" title="<?php echo $this->escape($title); ?>"><?php echo $this->escape($title); ?></a>

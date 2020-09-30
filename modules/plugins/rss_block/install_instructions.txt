@@ -1,0 +1,6 @@
+1. Add an external feed to Tools->External Feeds.
+
+2. Edit /plugins/rss_block/rss_template_block.tpl and change {external_feed_1} changing the "1" to the feed ID number you wish to display.
+
+3. Add the variable below in the location the RSS feed block should display:
+<?php echo $this->block('rss'); ?>

@@ -1,0 +1,1 @@
+<a class="list-group-item" href="<?php echo $url; ?>" target="_blank"><i class="fa fa-globe"></i> <?php echo $lang['public_listing_map']; ?></a>

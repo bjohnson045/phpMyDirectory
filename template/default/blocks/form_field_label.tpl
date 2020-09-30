@@ -1,0 +1,1 @@
+<label class="col-lg-2 control-label <?php echo $classes; ?>"<?php echo $attributes; ?>><?php echo $label; ?><?php if(isset($suffix)) { ?><?php echo $suffix; ?><?php } ?><?php if(isset($required_text) OR isset($help)) { ?><em class="text-danger"><?php echo $help; ?><?php echo $required_text; ?></em><?php } ?></label>

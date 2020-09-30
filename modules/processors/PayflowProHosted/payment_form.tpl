@@ -1,0 +1,1 @@
+<iframe src="https://payflowlink.paypal.com?mode=<?php echo $mode; ?>&amp;SECURETOKEN=<?php echo $security_token; ?>&amp;SECURETOKENID=<?php echo $security_token_id; ?>" width="490" height="565" scrolling="no" frameborder="0" border="0" allowtransparency="true"></iframe>

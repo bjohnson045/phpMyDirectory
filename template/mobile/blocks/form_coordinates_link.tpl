@@ -1,0 +1,1 @@
+<a id="<?php echo $id; ?>_window_link" href="#"><?php echo $label; ?></a>

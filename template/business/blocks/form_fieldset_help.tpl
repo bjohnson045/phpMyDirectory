@@ -1,0 +1,1 @@
+ <a id="<?php echo $name; ?>_help" href="#"><i class="icon-question-sign"></i></a>

@@ -1,0 +1,2 @@
+<input type="text" placeholder="<?php echo $this->escape($lang['url_title_text']); ?>" class="form-control <?php echo $class; ?>" value="<?php echo $this->escape($url_title); ?>" name="<?php echo $name; ?>_title"<?php echo $attributes; ?> />
+<input type="text" style="margin-top: 5px;" placeholder="<?php echo $this->escape($lang['url']); ?>" class="form-control <?php echo $class; ?>" value="<?php echo $this->escape($url); ?>" name="<?php echo $name; ?>"<?php echo $attributes; ?> />

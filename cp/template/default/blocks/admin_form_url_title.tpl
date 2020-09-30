@@ -1,0 +1,2 @@
+<input type="text" placeholder="<?php echo $lang['url_title_text']; ?>" class="form-control <?php echo $class; ?>" value="<?php echo $url_title; ?>" name="<?php echo $name; ?>_title"<?php echo $attributes; ?> />
+<input type="text" style="margin-top: 5px;" placeholder="<?php echo $lang['url']; ?>" class="form-control <?php echo $class; ?>" value="<?php echo $url; ?>" name="<?php echo $name; ?>"<?php echo $attributes; ?> />

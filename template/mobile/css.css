@@ -1,0 +1,95 @@
+#messages div.error,
+#messages div.success,
+#messages div.notice {
+    -moz-border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px 5px 10px 10px;
+    border-width: 5px;
+    border-style: solid;
+    font-size: 1.2em;
+}
+
+#messages div.error {
+    border-color: #ffb9b9;
+    background: #ffeaea;
+}
+
+#messages div.success {
+    border-color: #aedf7c;
+    background: #e2fbc8;
+}
+
+form em {
+    font-weight: bold;
+    font-style: normal;
+    color: #C00;
+}
+
+/* Star Rating */
+.star-rating {
+    background:transparent url(./images/star_rating.gif) repeat-x scroll left top;
+    height:16px;
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+    position:relative;
+    width:80px;
+}
+.star-rating li { float:left; margin:0px; padding:0px; clear: none; }
+.star-rating li a {
+    display: block;
+    height: 16px;
+    line-height: 16px;
+    overflow: hidden;
+    padding: 0px;
+    position: absolute;
+    text-decoration: none;
+    text-indent: -9000px;
+    width: 16px;
+    z-index: 20;
+}
+.star-rating li a:hover {
+    background: transparent url(./images/star_rating.gif) repeat scroll left center;
+    border: medium none;
+    left: auto;
+    z-index: 2;
+}
+.star-rating a.one-star { left:0px; }
+.star-rating a.one-star:hover { width:16px; }
+.star-rating a.two-stars { left:16px; }
+.star-rating a.two-stars:hover { width:32px; }
+.star-rating a.three-stars { left:32px; }
+.star-rating a.three-stars:hover { width:48px; }
+.star-rating a.four-stars { left:48px; }
+.star-rating a.four-stars:hover { width:64px; }
+.star-rating a.five-stars { left:64px; }
+.star-rating a.five-stars:hover { width:80px; }
+.star-rating ul { padding: 0px; }
+.star-rating li.current-rating {
+    background:transparent url(./images/star_rating.gif) repeat scroll left bottom;
+    display: block;
+    height: 16px;
+    position: absolute;
+    text-indent: -9000px;
+    z-index: 1;
+    padding: 0px;
+    padding-left: 0px;
+}
+
+.page-numbers-results {
+    float: right;
+}
+
+.ui-br {
+    border: none;
+}
+
+.ui-field-contain, fieldset.ui-field-contain {
+    padding: 0 0 .8em 0;
+}
+
+p.note {
+    font-size: small;
+}

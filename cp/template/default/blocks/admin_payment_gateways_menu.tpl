@@ -1,0 +1,2 @@
+<a class="list-group-item" href="admin_payment_gateways.php"><div class="icon icon_computer"></div><?php echo $lang['admin_gateways']; ?></a>
+<a class="list-group-item" href="admin_gateways_log.php"><div class="icon icon_doc"></div><?php echo $lang['admin_gateways_log']; ?></a>

@@ -1,0 +1,1 @@
+<h1 class="page-header"><?php echo $this->escape($title); ?></h1>

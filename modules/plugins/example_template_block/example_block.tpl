@@ -1,0 +1,1 @@
+Example block content from example_block.tpl
