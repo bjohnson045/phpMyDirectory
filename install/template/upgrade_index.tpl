@@ -26,13 +26,6 @@
 <?php } else { ?>
     <h3>Upgrade</h3>
     <p>Welcome to the phpMyDirectory <?php echo $upgrade_version; ?> upgrade process.  Please log in.</p>
-    <?php if($downloads_expire) { ?>
-        <div class="alert alert-warning">
-            <h4>Download Access Expiration Notice</h4>
-            We have detected that your download access has expired on <?php echo $downloads_expire; ?> for the license being used on this domain.<br />
-            In order to prevent problems with this upgrade, please ensure version <?php echo $upgrade_version; ?> was released during your download access period or please renew your download access for this license.
-        </div>
-    <?php } ?>
     <div class="alert alert-warning">
         <h4>Important!</h4>
         Please make sure you have made a backup of your database before proceeding.

@@ -3,7 +3,7 @@
 // Settings
 // Listings
 include('../../../defaults.php');
-if(md5(LICENSE.$_SESSION['login'].$_SESSION['pass']) != $_SESSION['import_hash']) {
+if(md5($_SESSION['login'].$_SESSION['pass']) != $_SESSION['import_hash']) {
     redirect(BASE_URL.'/install/import/index.php');
 }
 

@@ -26,12 +26,3 @@ form .help-block {
     padding-left: 0px !important;
 }
 
-#terms {
-    font-size: 11px;
-}
-
-#termsBox .modal-body {
-    overflow-y: scroll;
-    height: 400px;
-}
-

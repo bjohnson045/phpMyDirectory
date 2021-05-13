@@ -1,30 +1,10 @@
 <?php if($install_instructions == '') { ?>
-<?php $terms = nl2br(file_get_contents('../docs/license.txt')); ?>
 <script type="text/javascript">
     $(document).ready(function(){
         $('#database_help').popover({'html': true, container: 'body', trigger: 'hover', placement: 'right', title: 'Database Help', content: 'You must create a database before running this installation process. The details for the database you create are entered in this step. The host name is often &quot;localhost&quot; if not otherwise stated by your web host.&nbsp; The table prefix setting adds a prefix to all database tables. (ex: pmd_users)'});
         $('#admin_help').popover({'html': true, container: 'body', trigger: 'hover', placement: 'right', title: 'Administrator Login Help', content: 'The email and password entered here will allow access to the directory administrative area.'});
-        $('#license_help').popover({'html': true, container: 'body', trigger: 'hover', placement: 'right', title: 'License Help', content: 'Your license number can be found in your user area.&nbsp; It is in the format:<br> PMDGL-xxxxxxxxxxxx'});
     });
 </script>
-<div id="termsBox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="termsLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="termsLabel">phpMyDiredctory End User License Agreement</h3>
-            </div>
-            <div class="modal-body">
-                <p style="font-size: 11px">
-                    <?php echo $terms; ?>
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 <?php if(count($results)) { ?>
     <div class="alert alert-danger text-center">
         <h4>Server Requirements Error</h4>
@@ -67,36 +47,6 @@
                 <label class="col-lg-10 control-label">Password Repeat:</label>
                 <div class="col-lg-14">
                     <input class="form-control" type="text" name="admin_pass2" size="20" value="<?php echo htmlspecialchars($_POST['admin_pass2']); ?>">
-                </div>
-            </div>
-        </fieldset>
-        <fieldset>
-            <?php $terms = nl2br(file_get_contents('../docs/license.txt')); ?>
-            <legend>License / Terms and Conditions <i id="license_help" class="glyphicon glyphicon-question-sign text-muted"></i></legend>
-            <?php if($errors['license_format'] != '' OR $errors['terms'] != '') { ?>
-                <div class="alert alert-danger">
-                    <?php if($errors['terms'] != '') { ?>
-                        <?php if($errors['license_format'] != '') { ?>
-                            <p><?php echo $errors['terms']; ?></p>
-                        <?php } else { ?>
-                            <?php echo $errors['terms']; ?>
-                        <?php } ?>
-                    <?php } ?>
-                    <?php if($errors['license_format'] != '') { ?>
-                        <?php echo $errors['license_format']; ?>
-                    <?php } ?>
-                </div>
-            <?php } ?>
-            <div class="form-group">
-                <label class="col-lg-10 control-label">License Number:</label>
-                <div class="col-lg-14">
-                    <input class="form-control" type="text" id="license" name="license" value="<?php echo htmlspecialchars($_POST['license']); ?>">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-10 control-label">&nbsp;</label>
-                <div class="col-lg-14">
-                    <input type="checkbox" name="terms_agree" value="YES" <?php if(isset($_POST['terms_agree'])) echo 'CHECKED'; ?>> I agree to the  <a href="#termsBox" data-toggle="modal">phpMyDirectory terms and conditions</a>
                 </div>
             </div>
         </fieldset>

@@ -11,10 +11,6 @@ if(isset($_GET['email'])) {
     $_POST['admin_email'] = $_GET['email'];
 }
 
-if(isset($_GET['license'])) {
-    $_POST['license'] = $_GET['license'];
-}
-
 if(isset($_POST['complete'])) {
     include('../includes/class_database.php');
     $db = new Database();
@@ -46,11 +42,7 @@ if(isset($_POST['complete'])) {
             $errors['database_connect'] = "Database connection details are incorrect.<br>";
         }
     }
-
-    if(!validLicense($_POST['license'])) {
-        $errors['license_format'] = 'The license number entered is not in the correct format.<br>Example format: PMDGL-xxxxxxxxxxxx';
-    }
-
+    
     if($_POST['admin_email'] == '' OR $_POST['admin_pass'] == '') {
         $errors['admin_details'] = 'Please fill in all administrator details.<br>';
     }
@@ -66,7 +58,6 @@ if(isset($_POST['complete'])) {
     $password_salt = md5(uniqid(rand(), true));
 
     $variables = array(
-        'license'=>$_POST['license'],
         'url'=>BASE_URL,
         'url_ssl'=>'',
         'url_cdn'=>'',

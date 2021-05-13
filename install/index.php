@@ -10,8 +10,7 @@ $show_options = false;
 
 if(file_exists(PMDROOT.'/defaults.php')) {
     $defaults_contents = file_get_contents(PMDROOT.'/defaults.php');
-    if(!preg_match('/\$license=\'License Key Here\';/',$defaults_contents) AND
-       !preg_match('/\$BASE_URL = \'\';/',$defaults_contents) AND
+    if(!preg_match('/\$BASE_URL = \'\';/',$defaults_contents) AND
        !preg_match('/define(\'DB_USER\', \'\');/',$defaults_contents)) {
        $show_options = true;
     }

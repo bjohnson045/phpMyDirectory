@@ -15,7 +15,7 @@ if(!defined('DB_CHARSET')) {
 
 $PMDR->loadLanguage(array());
 
-if(md5(LICENSE.$_SESSION['login'].$_SESSION['pass']) != $_SESSION['import_hash']) {
+if(md5($_SESSION['login'].$_SESSION['pass']) != $_SESSION['import_hash']) {
     redirect(BASE_URL.'/install/upgrade/index.php');
 }
 
