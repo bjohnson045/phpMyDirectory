@@ -114,7 +114,6 @@ $users_permissions = array(
     'admin_discount_codes_view',
     'admin_discount_codes_delete',
     'admin_discount_codes_edit',
-    'admin_license_information_view',
     'admin_site_links_view',
     'admin_site_links_edit',
     'admin_site_links_delete',

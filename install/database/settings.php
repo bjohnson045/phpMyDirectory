@@ -1161,15 +1161,6 @@ State, City, Country
         'optioncode_parse_type'=>'static',
         'validationcode'=>NULL,
     ),
-    'license_local_key'=>array(
-        'varname'=>'license_local_key',
-        'grouptitle'=>'none',
-        'value'=>'',
-        'optioncode'=>NULL,
-        'optioncode_type'=>'text',
-        'optioncode_parse_type'=>'static',
-        'validationcode'=>NULL,
-    ),
     'banned_words'=>array(
         'varname'=>'banned_words',
         'grouptitle'=>'other',

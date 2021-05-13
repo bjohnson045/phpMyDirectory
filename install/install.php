@@ -51,10 +51,6 @@ if(isset($_POST['complete'])) {
         $errors['password_mismatch'] = 'The passwords entered do not match.<br>';
     }
 
-    if(!isset($_POST['terms_agree'])) {
-        $errors['terms'] = 'You must agree to the phpMyDirectory terms before installing.';
-    }
-
     $password_salt = md5(uniqid(rand(), true));
 
     $variables = array(
