@@ -6,8 +6,6 @@ include ('../includes/functions.php');
 
 $PMDR->loadLanguage(array());
 
-$license_information = $PMDR->getNew('PMDLicense')->getResultsLocal();
-
 $version = $db->GetOne("SELECT value FROM ".T_SETTINGS." WHERE varname='pmd_version'");
 if(count(explode('.',$version)) != 3) {
     $version .= '.0';
@@ -33,10 +31,6 @@ if(!isset($_GET['action'])) {
 
     if(!is_writable(PMDROOT.'/cache')) {
         $template_content->set('cache',true);
-    }
-
-    if(isset($license_information['downloads_expire']) AND strtotime($license_information['downloads_expire']) < time()) {
-        $template_content->set('downloads_expire',$PMDR->get('Dates_Local')->formatDate($license_information['downloads_expire']));
     }
 
     $form = $PMDR->get('Form');
@@ -65,7 +59,7 @@ if(!isset($_GET['action'])) {
         } else {
             $_SESSION['login'] = $data['login'];
             $_SESSION['pass'] = md5($data['pass']);
-            $_SESSION['import_hash'] = md5(LICENSE.$data['login'].md5($data['pass']));
+            $_SESSION['import_hash'] = md5($data['login'].md5($data['pass']));
             $_SESSION['version'] = $version;
             if(version_compare($version,'1.5.0','<')) {
                 redirect(BASE_URL.'/install/upgrade/index.php',array('action'=>'options'));

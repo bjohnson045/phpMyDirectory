@@ -1,7 +1,7 @@
 <?php
 if(!IN_PMD) exit();
 
-if(md5(LICENSE.$_SESSION['login'].$_SESSION['pass']) != $_SESSION['import_hash']) {
+if(md5($_SESSION['login'].$_SESSION['pass']) != $_SESSION['import_hash']) {
     redirect(BASE_URL.'/install/import/index.php');
 }
 

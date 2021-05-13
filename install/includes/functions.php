@@ -63,13 +63,6 @@ function validCURL() {
     return function_exists(curl_version);
 }
 
-function validLicense($license) {
-    if(!strstr($license,"-") OR strlen($license) != 18 OR (!strstr($license,"PMD") AND !strstr($license,"Trial"))) {
-        return false;
-    }
-    return true;
-}
-
 function validMySQL( $main, $minor, $sub ) {
     $temp = $main*10000 + $minor*100 + $sub;
     return ($temp <= mysqli-get-server-version($mysql_conn));

@@ -30,7 +30,7 @@ if($form->wasSubmitted('submit')) {
     } else {
         $_SESSION['login'] = $data['login'];
         $_SESSION['pass'] = md5($data['pass']);
-        $_SESSION['import_hash'] = md5(LICENSE.$data['login'].md5($data['pass']));
+        $_SESSION['import_hash'] = md5($data['login'].md5($data['pass']));
 
         switch($data['import_from']) {
             case '11-04-00':

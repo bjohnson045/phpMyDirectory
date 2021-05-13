@@ -1,7 +1,4 @@
 <?php
-/* License key - Is obtained from the user license area */
-$license='{license}';
-
 /* Administrator area folder name. Default: cp */
 $ADMIN_DIRECTORY = '{admin_directory}';
 
