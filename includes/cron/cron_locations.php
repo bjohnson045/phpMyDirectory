@@ -5,7 +5,10 @@ if(!function_exists('cron_locations')) {
     function cron_cleanup($j) {
         global $PMDR, $db;
 
-        $locations = $db->GetAll("SELECT id FROM ".T_LOCSTIONS." WHERE updated=1");
+        // This currently does not do anything. This is meant to eventeually update listings based on location path changes
+        
+        $listings = array();
+        $locations = $db->GetAll("SELECT id FROM ".T_LOCATIONS." WHERE updated=1");
         foreach($locations AS $location) {
 
 
@@ -25,12 +28,9 @@ if(!function_exists('cron_locations')) {
             $data['country'] = $this->PMDR->getConfig('map_country_static') != '' ? $this->PMDR->getConfig('map_country_static') : $data[$this->PMDR->getConfig('map_country')];
             $data['state'] = $this->PMDR->getConfig('map_state_static') != '' ? $this->PMDR->getConfig('map_state_static') :  $data[$this->PMDR->getConfig('map_state')];
             $data['city'] = $this->PMDR->getConfig('map_city_static') != '' ? $this->PMDR->getConfig('map_city_static') : $data[$this->PMDR->getConfig('map_city')];
-
-            $db->Execute("UPDATE )
         }
 
         return array('status'=>true);
     }
     $cron['cron_locations'] = array('day'=>-1,'hour'=>-1,'minute'=>0,'run_order'=>1);
 }
-?>
