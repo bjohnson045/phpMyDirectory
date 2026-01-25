@@ -233,7 +233,7 @@ if(!isset($_GET['primary_category_id'])) {
         $form->addValidator('www',new Validate_URL(false));
         $form->addFieldNote('www',$PMDR->getLanguage('user_orders_www_example'));
         $form->addValidator('www',new Validate_Banned_URL());
-        if(ADDON_LINK_CHECKER AND $product['require_reciprocal'] AND !$PMDR->getConfig('reciprocal_field')) {
+        if($product['require_reciprocal'] AND !$PMDR->getConfig('reciprocal_field')) {
             $form->addFieldNote('www',$PMDR->getLanguage('user_listings_reciprocal_instructions',array($PMDR->get('LinkChecker')->check_url)));
         }
     }
@@ -256,11 +256,11 @@ if(!isset($_GET['primary_category_id'])) {
 
     $fields = $PMDR->get('Fields')->addToForm($form,'listings',array('fieldset'=>'listing','filter'=>$product,'category'=>$_GET['primary_category_id'],'admin_only'=>false));
 
-    if(ADDON_LINK_CHECKER AND $product['require_reciprocal'] AND $PMDR->getConfig('reciprocal_field') AND $product[$PMDR->getConfig('reciprocal_field').'_allow']) {
+    if($product['require_reciprocal'] AND $PMDR->getConfig('reciprocal_field') AND $product[$PMDR->getConfig('reciprocal_field').'_allow']) {
         $form->addFieldNote($PMDR->getConfig('reciprocal_field'),$PMDR->getLanguage('user_listings_reciprocal_instructions',array($PMDR->get('LinkChecker')->check_url)));
     }
 
-    if(ADDON_LINK_CHECKER AND $product['require_reciprocal']) {
+    if($product['require_reciprocal']) {
         if($links = $PMDR->get('Site_Links')->getLinks()) {
             $site_links_template = $PMDR->getNew('Template',PMDROOT.TEMPLATE_PATH.'site_links.tpl');
             $site_links_template->set('links',$links);
@@ -360,7 +360,7 @@ if($form->wasSubmitted('submit')) {
     if(!empty($data['www']) AND $PMDR->getConfig('block_duplicate_urls') AND $listing = $db->GetRow("SELECT id, friendly_url FROM ".T_LISTINGS." WHERE www=?",array($data['www']))) {
         $form->addError($PMDR->getLanguage('user_listings_duplicate_url_error',$PMDR->get('Listings')->getURL($listing['id'],$listing['friendly_url'])),'www');
     }
-    if(ADDON_LINK_CHECKER AND $product['require_reciprocal']) {
+    if($product['require_reciprocal']) {
         if(!$PMDR->getConfig('reciprocal_field')) {
             if(!empty($data['www'])) {
                 if($PMDR->get('LinkChecker')->checkURL($data['www']) != 'valid') {

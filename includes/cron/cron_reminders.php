@@ -8,7 +8,7 @@ function cron_reminders($j) {
     // In other words, send a reminder email 4 times every 7 days after a user registers if they remain unconfirmed
     $unconfirmed_users = $db->GetAll("SELECT u.id, u.user_email FROM ".T_USERS." u INNER JOIN ".T_USERS_GROUPS_LOOKUP." ugl ON u.id=ugl.user_id WHERE ugl.group_id=5 AND DATEDIFF(NOW(),u.created) BETWEEN 1 AND 30 AND MOD(DATEDIFF(NOW(),u.created),7) = 0");
     foreach($unconfirmed_users AS $user) {
-        $variables['user_url'] = BASE_URL.MEMBERS_FOLDER.'user_confirm_email.php?c='.md5($user['user_email'].LICENSE).'-'.$user['id'];
+        $variables['user_url'] = BASE_URL.MEMBERS_FOLDER.'user_confirm_email.php?c='.md5($user['user_email'].SECURITY_KEY).'-'.$user['id'];
         $PMDR->get('Email_Templates')->queue('user_email_confirmation_reminder',array('to'=>$user['id'],'user_id'=>$user['id'],'variables'=>$variables));
     }
 

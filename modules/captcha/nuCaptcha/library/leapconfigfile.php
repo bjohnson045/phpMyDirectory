@@ -152,7 +152,7 @@ class lmcConfigFile
 			$value = trim( $value );
 			
 			$isQuoted = false;
-			if ( ($value{0} === '"') || ($value{0} === '\'') )
+			if ( ($value[0] === '"') || ($value[0] === '\'') )
 			{
 				$isQuoted = true;
 			}
@@ -162,7 +162,7 @@ class lmcConfigFile
 				$tmp = explode( ';', $value );
 				if ( count( $tmp ) == 2 )
 				{
-					if ( (($value{0} != '"') && ($value{0} != "'")) ||
+					if ( (($value[0] != '"') && ($value[0] != "'")) ||
 						 preg_match( '/^".*"\s*;/', $value ) || preg_match( '/^".*;[^"]*$/', $value ) ||
 						 preg_match( "/^'.*'\s*;/", $value ) || preg_match( "/^'.*;[^']*$/", $value ) )
 					{
@@ -171,11 +171,11 @@ class lmcConfigFile
 				}
 				else
 				{
-					if ( $value{0} == '"' )
+					if ( $value[0] == '"' )
 					{
 						$value = preg_replace( '/^"(.*)".*/', '$1', $value );
 					}
-					else if ( $value{0} == "'" )
+					else if ( $value[0] == "'" )
 					{
 						$value = preg_replace( "/^'(.*)'.*/", '$1', $value );
 					}

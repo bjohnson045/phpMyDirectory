@@ -270,7 +270,7 @@ class Categories extends Tree_Gateway {
 
         $sql .="
                 FROM ".$this->table_type." INNER JOIN ".$this->table_lookup." ON ".$this->table_type.".id=".$this->table_lookup.".list_id
-                WHERE ".$this->lookup_Table.".".$this->category_lookup_field."='$category_id'
+                WHERE ".$this->table_lookup.".".$this->category_lookup_field."='$category_id'
                     AND ".$this->table_type.".status = 'active'
                 $orderby $limit_sql";
 
@@ -380,7 +380,7 @@ class Categories extends Tree_Gateway {
     * @param int $location_id Location ID
     * @param string $location_path Location friendly URL path
     */
-    function getURL($id=null, $category_path, $location_id = null, $location_path = null) {
+    function getURL($id, $category_path, $location_id = null, $location_path = null) {
         if(MOD_REWRITE) {
             $url_string = rtrim(BASE_URL_NOSSL.'/'.$this->PMDR->getConfig('category_mod_rewrite'),'/').'/'.$category_path;
             if(!is_null($location_path)) {

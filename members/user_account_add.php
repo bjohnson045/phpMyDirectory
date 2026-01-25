@@ -207,7 +207,7 @@ if($form->wasSubmitted('submit')) {
             $data['user_groups'] = array(5);
             $PMDR->addMessage('success',$PMDR->getLanguage('user_account_email_confirm'));
             $user_id = $users->insert($data);
-            $data['url'] = BASE_URL.MEMBERS_FOLDER.'user_confirm_email.php?c='.md5($data['user_email'].LICENSE).'-'.$user_id;
+            $data['url'] = BASE_URL.MEMBERS_FOLDER.'user_confirm_email.php?c='.md5($data['user_email'].SECURITY_KEY).'-'.$user_id;
             if(!empty($_GET['from'])) {
                 $data['url'] .= '&from='.urlencode_url($_GET['from']);
                 unset($_GET['from']);

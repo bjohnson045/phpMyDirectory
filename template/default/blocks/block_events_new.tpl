@@ -1,4 +1,4 @@
-<?php if(count($events)) { ?>
+<?php if(!empty($events) && count($events)) { ?>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['block_events_new']; ?><a class="pull-right" href="<?php echo BASE_URL; ?>/xml.php?type=rss_events_new"><i class="fa fa-rss"></i></a></h3>

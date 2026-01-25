@@ -48,11 +48,9 @@ function cron_cron_report($j) {
                 case 'cron_link_checker':
                     $report['links_dead'] += $data['dead'];
                     $report['links_valid'] += $data['valid'];
-                    if(ADDON_LINK_CHECKER) {
-                        $report['links_reciprocal_valid'] += $data['reciprocal_valid'];
-                        $report['links_reciprocal_required_invalid'] += $data['reciprocal_required_invalid'];
-                        $report['links_reciprocal_invalid'] += $data['reciprocal_invalid'];
-                    }
+                    $report['links_reciprocal_valid'] += $data['reciprocal_valid'];
+                    $report['links_reciprocal_required_invalid'] += $data['reciprocal_required_invalid'];
+                    $report['links_reciprocal_invalid'] += $data['reciprocal_invalid'];
                     break;
                 // Cleanup
                 case 'cron_cleanup':
@@ -133,13 +131,11 @@ function cron_cron_report($j) {
             $cron_message .= '- '.count(array_filter($report['orders_deleted'])).' orders deleted'."\n";
             $cron_message .= '- '.count(array_filter($report['orders_changed'])).' orders changed'."\n";
         }
-        if(ADDON_LINK_CHECKER) {
-            $cron_message .= '- '.$report['links_valid'].' links validated'."\n";
-            $cron_message .= '- '.$report['links_dead'].' dead links found'."\n";
-            $cron_message .= '- '.$report['links_reciprocal_valid'].' reciprocal links validated'."\n";
-            $cron_message .= '- '.$report['links_reciprocal_invalid'].' reciprocal links not found'."\n";
-            $cron_message .= '- '.$report['links_reciprocal_required_invalid'].' required reciprocal links not found'."\n";
-        }
+        $cron_message .= '- '.$report['links_valid'].' links validated'."\n";
+        $cron_message .= '- '.$report['links_dead'].' dead links found'."\n";
+        $cron_message .= '- '.$report['links_reciprocal_valid'].' reciprocal links validated'."\n";
+        $cron_message .= '- '.$report['links_reciprocal_invalid'].' reciprocal links not found'."\n";
+        $cron_message .= '- '.$report['links_reciprocal_required_invalid'].' required reciprocal links not found'."\n";
         $cron_message .= '- '.$report['website_screenshots'].' website screenshots retrieved.'."\n";
         $cron_message .= '- '.$report['queue_sent'].' queued emails sent'."\n";
         $cron_message .= '- '.$report['coordinates_calculated'].' listings with empty coordinates updated'."\n";

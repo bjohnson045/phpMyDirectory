@@ -51,9 +51,6 @@ if(!function_exists('cron_cleanup')) {
             $PMDR->get('Email_Marketing')->processQueue();
         }
 
-        // Do a "soft" check on the license.  Failure will get logged remotely for fraud detection.
-        $PMDR->getNew('PMDLicense')->validateSilent();
-
         return array('status'=>true);
     }
     $cron['cron_cleanup'] = array('day'=>-1,'hour'=>0,'minute'=>0,'run_order'=>1);

@@ -89,9 +89,7 @@ if(!isset($_GET['action'])) {
     $form->addField('email_allow','checkbox',array('label'=>$PMDR->getLanguage('admin_memberships_email_allow'),'fieldset'=>'permissions','value'=>'1','help'=>$PMDR->getLanguage('admin_memberships_help_email_allow')));
     $form->addField('email_friend_allow','checkbox',array('label'=>$PMDR->getLanguage('admin_memberships_email_friend_allow'),'fieldset'=>'permissions','value'=>'1','help'=>$PMDR->getLanguage('admin_memberships_help_email_friend_allow')));
     $form->addField('www_allow','checkbox',array('label'=>$PMDR->getLanguage('admin_memberships_website_allow'),'fieldset'=>'permissions','value'=>'1','help'=>$PMDR->getLanguage('admin_memberships_help_website_allow')));
-    if(ADDON_LINK_CHECKER) {
-        $form->addField('require_reciprocal','checkbox',array('label'=>$PMDR->getLanguage('admin_memberships_require_reciprocal'),'fieldset'=>'permissions','help'=>$PMDR->getLanguage('admin_memberships_help_require_reciprocal')));
-    }
+    $form->addField('require_reciprocal','checkbox',array('label'=>$PMDR->getLanguage('admin_memberships_require_reciprocal'),'fieldset'=>'permissions','help'=>$PMDR->getLanguage('admin_memberships_help_require_reciprocal')));
     $form->addField('www_screenshot_allow','checkbox',array('label'=>$PMDR->getLanguage('admin_memberships_www_screenshot_allow'),'fieldset'=>'permissions','value'=>'1','help'=>$PMDR->getLanguage('admin_memberships_help_www_screenshot_allow')));
     $form->addField('map_allow','checkbox',array('label'=>$PMDR->getLanguage('admin_memberships_map_allow'),'fieldset'=>'permissions','value'=>'1','help'=>$PMDR->getLanguage('admin_memberships_help_map_allow')));
     $form->addField('logo_allow','checkbox',array('label'=>$PMDR->getLanguage('admin_memberships_logo_allow'),'fieldset'=>'permissions','value'=>'1','help'=>$PMDR->getLanguage('admin_memberships_help_logo_allow')));

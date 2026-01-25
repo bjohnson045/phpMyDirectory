@@ -319,7 +319,7 @@ class Locations extends Tree_Gateway {
     * @param int $category_id Category ID
     * @param string $category_path Category friendly URL path
     */
-    function getURL($id=null, $location_path, $category_id = null, $category_path = null) {
+    function getURL($id, $location_path, $category_id = null, $category_path = null) {
         if(MOD_REWRITE) {
             $url_string = ltrim($this->PMDR->getConfig('location_mod_rewrite').'/','/').$location_path;
             if(!is_null($category_path)) {

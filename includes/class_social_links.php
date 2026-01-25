@@ -32,7 +32,7 @@ class Social_Links {
             'youtube'=>'http://youtube.com/user/*',
             'pinterest'=>'http://pinterest.com/*',
             'foursquare'=>'http://foursquare.com/*',
-        )
+        );
     }
 
     function getURL($type, $id) {

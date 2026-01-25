@@ -38,7 +38,7 @@ class FirstDataGlobal extends PaymentAPIHandler {
             'responseFailURL'=>'',
             'responseURL'=>BASE_URL.MEMBERS_FOLDER.'user_payment_return.php',
             'invoice_number'=>$data['invoice_id'],
-            'hash'=>md5(md5(LICENSE).$this->settings['store_id'].$data['invoice_id'].$data['balance']),
+            'hash'=>md5(md5(SECURITY_KEY).$this->settings['store_id'].$data['invoice_id'].$data['balance']),
             'comments'=>$this->PMDR->getConfig('invoice_company').' - Invoice #'.$data['invoice_id']
         );
 
@@ -106,7 +106,7 @@ class FirstDataGlobal extends PaymentAPIHandler {
     * @return boolean
     */
     function verifyResponse() {
-        if($this->response['hash'] != md5(md5(LICENSE).$this->settings['store_id'].$this->response['invoice_number'].$this->response['chargetotal'])) {
+        if($this->response['hash'] != md5(md5(SECURITY_KEY).$this->settings['store_id'].$this->response['invoice_number'].$this->response['chargetotal'])) {
             return false;
         }
         if(!$this->loadStoredParameters($this->response['invoice_number'])) {

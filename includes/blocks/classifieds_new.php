@@ -28,8 +28,8 @@ class Classifieds_New_Block extends Template_Block {
                 );
                 foreach($records as $key=>$record) {
                     if($record['classifieds_images_allow']) {
-                        $records[$key]['thumb'] = $this->PMDR->get('Classifieds')->getImageThumbnailURL($classified);
-                        $records[$key]['image'] = $this->PMDR->get('Classifieds')->getImageURL($classified);
+                        $records[$key]['thumb'] = $this->PMDR->get('Classifieds')->getImageThumbnailURL($record);
+                        $records[$key]['image'] = $this->PMDR->get('Classifieds')->getImageURL($record);
                     }
                     $records[$key]['description'] = Strings::limit_words($record['description'],$this->PMDR->getConfig('block_description_size'));
                     $records[$key]['link'] = $this->PMDR->get('Classifieds')->getURL($record['id'],$record['friendly_url']);

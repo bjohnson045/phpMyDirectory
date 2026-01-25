@@ -98,7 +98,6 @@ class Netcash_Notification extends Netcash {
         $this->loadResult();
         if($this->result == 'success') {
             parent::processPayment($this->response['Reference'],$this->response['RETC'],$this->response['Amount']);
-            break;
         }
         return $this->response['Reference'];
     }

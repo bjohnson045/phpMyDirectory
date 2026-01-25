@@ -207,7 +207,7 @@ class blog extends TableGateway {
         $this->PMDR->get('Email_Templates')->send('admin_blog_comment_submitted',array('blog_id'=>$id,'variables'=>$variables));
 
         if($data['follow'] AND !is_null($data['user_id'])) {
-            $this->follow($record['id'],$data['user_id']);
+            $this->follow($id,$data['user_id']);
         }
     }
 }

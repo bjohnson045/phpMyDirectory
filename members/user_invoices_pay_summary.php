@@ -56,7 +56,7 @@ include(PMDROOT.'/modules/processors/'.$gateway['id'].'/'.$gateway['id'].'_class
 $processor = new $gateway['id']($PMDR);
 
 // Set cookie so we can retreive the proper gateway after returning from the invoice payment
-setcookie(COOKIE_PREFIX.'payment_gateway',md5($gateway['id'].LICENSE),0,COOKIE_PATH,COOKIE_DOMAIN);
+setcookie(COOKIE_PREFIX.'payment_gateway',md5($gateway['id'].SECURITY_KEY),0,COOKIE_PATH,COOKIE_DOMAIN);
 
 $form = $PMDR->getNew('Form');
 

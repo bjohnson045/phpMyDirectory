@@ -484,16 +484,6 @@ switch($_POST['action']) {
                 $template->set('transactions',$transactions);
             }
             if($settings = $db->GetAll("SELECT s.*, l.content FROM ".T_LANGUAGE_PHRASES." l INNER JOIN ".T_SETTINGS." s ON l.variablename = CONCAT('setting_',s.varname,'_title') WHERE l.section='settings' AND (l.content LIKE ".$db->Clean($_POST['value']."%")." OR s.varname LIKE ".$db->Clean($_POST['value']."%").")")) {
-                foreach($settings AS $key=>$setting) {
-                    if($setting['varname'] == 'reciprocal_field' AND !ADDON_LINK_CHECKER) {
-                        unset($settings[$key]);
-                        continue;
-                    }
-                    if(($setting['grouptitle'] == 'blog' OR strstr($setting['varname'],'blog')) AND !ADDON_BLOG) {
-                        unset($settings[$key]);
-                        continue;
-                    }
-                }
                 if(count($settings)) {
                     $template->set('settings',$settings);
                 }
@@ -1016,33 +1006,29 @@ switch($_POST['action']) {
             );
             $id++;
         }
-        if(ADDON_DISCOUNT_CODES) {
-            $discount_codes = $db->GetAll("SELECT id, code, DATE(date_start) AS date_start, DATE(date_expire) AS date_expire FROM ".T_DISCOUNT_CODES." WHERE UNIX_TIMESTAMP(date_start) BETWEEN ? AND ? OR UNIX_TIMESTAMP(date_expire) BETWEEN ? AND ?",array($_POST['start'],$_POST['end'],$_POST['start'],$_POST['end']));
-            foreach($discount_codes AS $discount_code) {
-                $data[] = array (
-                    'id'=>$id,
-                    'title'=>$PMDR->getLanguage('admin_calendar_discount_active').' ('.$discount_code['code'].')',
-                    'start'=>$discount_code['date_start'],
-                    'end'=>$discount_code['date_expire'],
-                    'allDay'=>true,
-                    'url'=>BASE_URL_ADMIN.'/admin_discount_codes.php?action=edit&id='.$discount_code['id']
-                );
-                $id++;
-            }
+        $discount_codes = $db->GetAll("SELECT id, code, DATE(date_start) AS date_start, DATE(date_expire) AS date_expire FROM ".T_DISCOUNT_CODES." WHERE UNIX_TIMESTAMP(date_start) BETWEEN ? AND ? OR UNIX_TIMESTAMP(date_expire) BETWEEN ? AND ?",array($_POST['start'],$_POST['end'],$_POST['start'],$_POST['end']));
+        foreach($discount_codes AS $discount_code) {
+            $data[] = array (
+                'id'=>$id,
+                'title'=>$PMDR->getLanguage('admin_calendar_discount_active').' ('.$discount_code['code'].')',
+                'start'=>$discount_code['date_start'],
+                'end'=>$discount_code['date_expire'],
+                'allDay'=>true,
+                'url'=>BASE_URL_ADMIN.'/admin_discount_codes.php?action=edit&id='.$discount_code['id']
+            );
+            $id++;
         }
-        if(ADDON_BLOG) {
-            $blog_posts = $db->GetAll("SELECT id, title, date_publish FROM ".T_BLOG." WHERE UNIX_TIMESTAMP(date_publish) BETWEEN ? AND ?",array($_POST['start'],$_POST['end']));
-            foreach($blog_posts AS $blog_post) {
-                $data[] = array (
-                    'id'=>$id,
-                    'title'=>$PMDR->getLanguage('admin_calendar_blog_published').' ('.$blog_post['id'].')',
-                    'start'=>$blog_post['date_publish'],
-                    'end'=>$blog_post['date_publish'],
-                    'allDay'=>true,
-                    'url'=>BASE_URL_ADMIN.'/admin_blog.php?action=edit&id='.$blog_post['id']
-                );
-                $id++;
-            }
+        $blog_posts = $db->GetAll("SELECT id, title, date_publish FROM ".T_BLOG." WHERE UNIX_TIMESTAMP(date_publish) BETWEEN ? AND ?",array($_POST['start'],$_POST['end']));
+        foreach($blog_posts AS $blog_post) {
+            $data[] = array (
+                'id'=>$id,
+                'title'=>$PMDR->getLanguage('admin_calendar_blog_published').' ('.$blog_post['id'].')',
+                'start'=>$blog_post['date_publish'],
+                'end'=>$blog_post['date_publish'],
+                'allDay'=>true,
+                'url'=>BASE_URL_ADMIN.'/admin_blog.php?action=edit&id='.$blog_post['id']
+            );
+            $id++;
         }
         $email_campaigns = $db->GetAll("SELECT id, title, date_sent FROM ".T_EMAIL_CAMPAIGNS." WHERE UNIX_TIMESTAMP(date_sent) BETWEEN ? AND ?",array($_POST['start'],$_POST['end']));
         foreach($email_campaigns AS $email_campaign) {

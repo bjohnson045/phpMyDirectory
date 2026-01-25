@@ -3,9 +3,7 @@ define('PMD_SECTION','members');
 
 include ('../defaults.php');
 
-if(ADDON_DISCOUNT_CODES) {
-    $PMDR->get('Discount_Codes')->setURLCode();
-}
+$PMDR->get('Discount_Codes')->setURLCode();
 
 $PMDR->get('Authentication')->authenticateIP();
 

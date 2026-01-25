@@ -16,7 +16,7 @@ $user = $PMDR->get('Users')->getRow($PMDR->get('Session')->get('user_id'));
 
 $template_content = $PMDR->getNew('Template',PMDROOT.TEMPLATE_PATH.'members/user_payment_return.tpl');
 
-$gateway = $db->GetRow("SELECT id FROM ".T_GATEWAYS." WHERE MD5(CONCAT(id,'".LICENSE."'))=?",array($_COOKIE[COOKIE_PREFIX.'payment_gateway']));
+$gateway = $db->GetRow("SELECT id FROM ".T_GATEWAYS." WHERE MD5(CONCAT(id,'".SECURITY_KEY."'))=?",array($_COOKIE[COOKIE_PREFIX.'payment_gateway']));
 
 if(!$gateway) {
     redirect(BASE_URL.MEMBERS_FOLDER.'user_invoices.php');

@@ -254,6 +254,7 @@ class Classifieds extends TableGateway {
         * @var $pdf TCPDF
         */
         $pdf = $this->PMDR->get('TCPDF');
+        $tagvs = array();
         $pdf->setHtmlVSpace($tagvs);
         $pdf->setJPEGQuality(100);
         $pdf->SetCreator(BASE_URL);

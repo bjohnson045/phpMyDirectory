@@ -67,6 +67,21 @@ class Authentication {
     * @var string
     */
     var $encryption = 'sha256';
+    /**
+    * Installation folder path
+    * @var string
+    */
+    var $installation_folder;
+    /**
+    * Cookie domain
+    * @var string
+    */
+    var $cookie_domain;
+    /**
+    * Session prefix
+    * @var string
+    */
+    var $session_prefix;
 
     /**
     * Auth constructor

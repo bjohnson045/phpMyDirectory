@@ -1,7 +1,7 @@
 <?php
 class Blog_Categories_Block extends Template_Block {
     function content() {
-        if(intval($this->PMDR->getConfig('blog_block_number')) > 0 AND ADDON_BLOG) {
+        if(intval($this->PMDR->getConfig('blog_block_number')) > 0) {
             $block_blog_categories_template = $this->PMDR->getNew('Template',PMDROOT.TEMPLATE_PATH.'blocks/block_blog_categories.tpl');
             $block_blog_categories_template->cache_id = 'block_blog_categories';
             $block_blog_categories_template->expire = 900;

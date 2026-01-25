@@ -1,7 +1,7 @@
 <?php
 class Blog_Posts_Block extends Template_Block {
     function content($limit = null) {
-        if($this->PMDR->getConfig('blog_block_number') AND ADDON_BLOG) {
+        if($this->PMDR->getConfig('blog_block_number')) {
             $block_blog_posts_template = $this->PMDR->getNew('Template',PMDROOT.TEMPLATE_PATH.'blocks/block_blog_posts.tpl');
             $block_blog_posts_template->cache_id = 'block_blog_posts';
             $block_blog_posts_template->expire = 900;
