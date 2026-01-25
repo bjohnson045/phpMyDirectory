@@ -312,11 +312,6 @@ $gd_info = @gd_info();
 $gd = (get_extension_funcs('gd') AND extension_loaded('gd') AND strstr($gd_info['GD Version'],'2.'));
 $json = function_exists('json_encode');
 $allow_url_fopen = ini_get('allow_url_fopen');
-if($ioncube = function_exists('ioncube_loader_version')) {
-    if(function_exists('ioncube_loader_version')) {
-        $ioncube_version = ioncube_loader_version();
-    }
-}
 
 $template_content->set('allow_url_fopen',$allow_url_fopen);
 
@@ -328,12 +323,6 @@ $output = '';
 $output .= '<span class="label label-lg label-'.(intval($curl) ? 'success' : 'important').'">CURL</span> ';
 $output .= '<span class="label label-lg label-'.(intval($gd) ? 'success' : 'important').'">GD2</span> ';
 $output .= '<span class="label label-lg label-'.(intval($json) ? 'success' : 'important').'">JSON Support</span> ';
-$output .= '<span class="label label-lg label-'.(intval($ioncube) ? 'success' : 'important').'">ionCube ';
-if(!empty($ioncube_version)) {
-    $output .= '('.$ioncube_version.') ';
-}
-$output .= '<span class="label label-lg label-'.(intval($json) ? 'success' : 'important').'">JSON Support</span> ';
-$output .= '</span>';
 
 $template_content->set('requirements',$output);
 

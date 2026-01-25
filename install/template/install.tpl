@@ -22,11 +22,11 @@
         <div class="col-xs-12">
         <fieldset>
             <legend>Administrator Login Details <i id="admin_help" class="glyphicon glyphicon-question-sign text-muted"></i></legend>
-            <?php if($errors['admin_details'] != '') { ?>
+            <?php if(!empty($errors['admin_details'])) { ?>
                 <div class="alert alert-danger">
                     <?php echo $errors['admin_details']; ?>
                 </div>
-            <?php } elseif($errors['password_mismatch'] != '') { ?>
+            <?php } elseif(!empty($errors['password_mismatch'])) { ?>
                 <div class="alert alert-danger">
                     <?php echo $errors['password_mismatch']; ?>
                 </div>
@@ -54,16 +54,16 @@
         <div class="col-xs-11 col-xs-offset-1">
         <fieldset>
             <legend>Database Connection Details <i id="database_help" class="glyphicon glyphicon-question-sign text-muted"></i></legend>
-            <?php if($errors['database_connect'] != '') { ?>
+            <?php if(!empty($errors['database_connect'])) { ?>
                 <div class="alert alert-danger">
                     <?php echo $errors['database_connect']; ?>
                 </div>
-            <?php } elseif($errors['prefix_exists'] != '') { ?>
+            <?php } elseif(!empty($errors['prefix_exists'])) { ?>
                 <div class="alert alert-danger">
                     <?php echo $errors['prefix_exists']; ?>
                     <label><input type="checkbox" name="prefix_overwrite" value="YES" <?php if(isset($_POST['prefix_overwrite'])) echo 'CHECKED'; ?>> Overwrite tables</label>
                 </div>
-            <?php } elseif($errors['prefix_format'] != '') { ?>
+            <?php } elseif(!empty($errors['prefix_format'])) { ?>
                 <div class="alert alert-danger">
                     <?php echo $errors['prefix_format']; ?>
                 </div>

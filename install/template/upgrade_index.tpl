@@ -10,12 +10,6 @@
         phpMyDirectory requires PHP 5.6+ or above.<br />
         Please upgrade the server to PHP 5.6+ or contact your web host to install PHP 5.6+.
     </div>
-<?php } elseif(isset($upgrade_ioncube)) { ?>
-    <div class="alert alert-danger" style="text-align: center">
-        <h4>ionCube 5.0+ Required</h4>
-        phpMyDirectory requires ionCube version 5.0+ to be installed.<br />
-        Please upgrade the ionCube version on the server to 5.0+.  Contact your web host or phpMyDirectory support for additional assistance.
-    </div>
 <?php } elseif(isset($cache)) { ?>
     <div class="alert alert-warning" style="text-align: center">
         <h4>Cache Not Writable</h4>

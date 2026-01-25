@@ -21,10 +21,6 @@ if(!isset($_GET['action'])) {
         $template_content->set('upgrade_php',true);
     }
 
-    if(!validionCube('5.0')) {
-        $template_content->set('upgrade_ioncube',true);
-    }
-
     if(!file_exists(PMDROOT.'/install/upgrade/'.str_replace('.','-',$version).'.php')) {
         $template_content->set('latest_version',true);
     }
