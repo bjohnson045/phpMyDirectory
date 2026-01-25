@@ -11,6 +11,14 @@ class CLI_Command {
     * @var Database
     */
     var $db;
+    /**
+    * @var CLI
+    */
+    var $cli;
+    /**
+    * @var array
+    */
+    var $options = array();
 
     /**
     * CLI Constructor
@@ -41,6 +49,14 @@ class CLI_Command {
             return false;
         }
         return true;
+    }
+
+    /**
+    * Return the help text for this command (override in child class)
+    * @return string
+    */
+    function help() {
+        return '';
     }
 }
 ?>

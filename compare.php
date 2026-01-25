@@ -3,9 +3,7 @@ define('PMD_SECTION', 'public');
 
 include('./defaults.php');
 
-if(ADDON_DISCOUNT_CODES) {
-    $PMDR->get('Discount_Codes')->setURLCode();
-}
+$PMDR->get('Discount_Codes')->setURLCode();
 
 $PMDR->loadLanguage(array('public_compare'));
 
@@ -83,7 +81,7 @@ if(!$template_content->isCached()) {
         'share_allow'=>'boolean',
     );
 
-    if(ADDON_LINK_CHECKER) $rows['require_reciprocal'] = 'boolean';
+    $rows['require_reciprocal'] = 'boolean';
 
     $rows['www_screenshot_allow'] = 'boolean';
 
@@ -179,9 +177,7 @@ if(!$template_content->isCached()) {
         unset($option_titles[$value]);
     }
 
-    if(ADDON_DISCOUNT_CODES) {
-        $template_content->set('discount_codes',$PMDR->get('Discount_Codes')->getDisplay());
-    }
+    $template_content->set('discount_codes',$PMDR->get('Discount_Codes')->getDisplay());
 
     $template_content->set('options',$option_titles);
     $template_content->set('products',$products);

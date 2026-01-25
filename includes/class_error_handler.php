@@ -9,6 +9,10 @@ class ErrorHandler {
     */
     var $PMDR;
     /**
+    * @var Database
+    */
+    var $db;
+    /**
     * @var string Log File Name
     */
     var $error_log_filename = '';
@@ -44,6 +48,18 @@ class ErrorHandler {
     * @var boolean Send notices to email
     */
     var $send_notices_to_mail;
+    /**
+    * @var boolean Log errors to database
+    */
+    var $log_errors_to_database;
+    /**
+    * @var boolean Log warnings to database
+    */
+    var $log_warnings_to_database;
+    /**
+    * @var boolean Log notices to database
+    */
+    var $log_notices_to_database;
     /**
     * Value used to detect uncaught exceptions
     */
@@ -113,7 +129,11 @@ class ErrorHandler {
         }
 
         // Check if this is a notice, if so we don't want to throw an exception because it will halt execution
-        if($code == E_NOTICE OR $code == E_USER_NOTICE OR $code == E_STRICT) {
+        // Note: E_STRICT is deprecated in PHP 8.4
+        // Also handle deprecation warnings (E_DEPRECATED = 8192)
+        $e_strict = 2048;
+        $e_deprecated = 8192;
+        if($code == E_NOTICE OR $code == E_USER_NOTICE OR $code == $e_strict OR $code == $e_deprecated OR $code == @E_USER_DEPRECATED) {
             if($this->log_notices_to_file) {
                 $this->logToFile($this->formatError($code,$message,$file,$line));
             }
@@ -232,10 +252,12 @@ class ErrorHandler {
     * @param int $line
     */
     function logToDatabase($code,$message,$file,$line,$trace = '') {
-        $trace = serialize($this->formatTrace($trace));
+        $formatted_trace = $this->formatTrace($trace);
+        // Convert trace to JSON instead of serialize to avoid PDO serialization issues
+        $trace_str = is_array($formatted_trace) ? json_encode($formatted_trace, JSON_PARTIAL_OUTPUT_ON_ERROR) : '';
         $message = strip_tags(preg_replace('/<br\s*\/?>/i',"\n",$message));
         try {
-            $this->db->Execute("INSERT INTO ".T_ERROR_LOG." (date,code,message,file,line,trace) VALUES (NOW(),?,?,?,?,?)",array($code,$message,$file,$line,$trace));
+            $this->db->Execute("INSERT INTO ".T_ERROR_LOG." (date,code,message,file,line,trace) VALUES (NOW(),?,?,?,?,?)",array($code,$message,$file,$line,$trace_str));
         } catch (Exception $e) {
             return false;
         }
@@ -260,7 +282,7 @@ class ErrorHandler {
                 break;
             case E_USER_NOTICE:
             case E_NOTICE:
-            case @E_STRICT:
+            case 2048: // E_STRICT (deprecated in PHP 8.4)
                 $type = 'Notice';
                 break;
             case @E_RECOVERABLE_ERROR:

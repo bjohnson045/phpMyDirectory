@@ -60,7 +60,7 @@ function validGD() {
 }
 
 function validCURL() {
-    return function_exists(curl_version);
+    return function_exists('curl_version');
 }
 
 function validMySQL( $main, $minor, $sub ) {

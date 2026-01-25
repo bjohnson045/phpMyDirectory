@@ -37,11 +37,9 @@ switch($_GET['type']) {
             for($x = 0; $x < ($classified_count / 10000); $x++) {
                 $gsi->addSitemap(BASE_URL.'/xml.php?type=sitemap_classifieds&batch='.($x+1),$PMDR->get('Dates')->dateNow());
             }
-            if(ADDON_BLOG) {
-                $blog_post_count = $db->GetOne("SELECT COUNT(*) FROM ".T_BLOG." WHERE status='active' AND DATE(date_publish) <= CURDATE()");
-                if($blog_post_count) {
-                    $gsi->addSitemap(BASE_URL.'/xml.php?type=sitemap_blog',$PMDR->get('Dates')->dateNow());
-                }
+            $blog_post_count = $db->GetOne("SELECT COUNT(*) FROM ".T_BLOG." WHERE status='active' AND DATE(date_publish) <= CURDATE()");
+            if($blog_post_count) {
+                $gsi->addSitemap(BASE_URL.'/xml.php?type=sitemap_blog',$PMDR->get('Dates')->dateNow());
             }
             if($db->GetOne("SELECT COUNT(*) FROM ".T_PAGES." WHERE active=1")) {
                 $gsi->addSitemap(BASE_URL.'/xml.php?type=sitemap_pages',$PMDR->get('Dates')->dateNow());

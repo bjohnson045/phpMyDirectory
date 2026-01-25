@@ -122,6 +122,21 @@ class Form {
     * Form attributes (i.e. class, style, etc)
     */
     var $attributes = array();
+    /**
+    * Database
+    * @var object
+    */
+    var $db;
+    /**
+    * Field counters
+    * @var array
+    */
+    var $counters = array();
+    /**
+    * Field filters
+    * @var array
+    */
+    var $filters = array();
 
     /**
     * Form Constructor

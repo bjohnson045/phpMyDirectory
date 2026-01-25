@@ -88,61 +88,9 @@ if(isset($template_page_menu)) {
     $template_header->set('template_page_menu',false);
 }
 
-// We need to check if it is defined because if its the first load we don't have the addon details yet
-if(!defined('ADDON_UNBRANDING') OR !ADDON_UNBRANDING) {
-    $template_header->set('logo',BASE_URL_ADMIN.TEMPLATE_PATH_ADMIN.'images/logo.png');
-    $copyright_text = '<span id="copyright_poweredby" style="float: left; display: block;">powered by phpMyDirectory (v'.$PMDR->getConfig('pmd_version').')</span>';
-    $copyright_text .= '<span id="copyright_company" style="float: right; display: block;">Copyright &copy; 2005-'.date('Y').' Accomplish Technology, LLC</span>';
-    $PMDR->loadJavascript('
-    <script type="text/javascript">
-    $(document).ready(function(){
-        $("#help-suggestions-link").qtip({
-            show: "click",
-            hide: {
-                fixed: true,
-                delay: 100
-            },
-            events: {
-                hide: function(event, api) {
-                    $("#help-suggestions-link").blur().parent().removeClass("open");
-                }
-            },
-            style: {
-                classes: "qtip-bootstrap qtip-shadow",
-            },
-            position: {
-                at: "bottom middle",
-                my: "top right",
-                adjust: { x: 5 },
-                viewport: $(window),
-                effect: false
-            },
-            content: {
-                text: function(event, api) {
-                    $.ajax({
-                        url: "https://www.phpmydirectory.com/manual_suggestions.php",
-                        data: ({
-                            contents: $("h1").text(),
-                            source: "cp"
-                        }),
-                        // Override the default ajaxSetup so we can show a specific error
-                        error: function(x,e){}
-                    })
-                    .then(function(content) {
-                        api.set("content.text", content);
-                    }, function(xhr, status, error) {
-                        api.set("content.text", "No results.");
-                    });
-                    return "Loading...";
-                }
-            }
-        });
-    });
-    </script>',100);
-} else {
-    $template_header->set('logo',BASE_URL_ADMIN.TEMPLATE_PATH_ADMIN.'images/logo_generic.png');
-    $copyright_text .= '<span id="copyright_poweredby" style="float: left;">v'.$PMDR->getConfig('pmd_version').'</span>';
-}
+// Use generic branding (open source version)
+$template_header->set('logo',BASE_URL_ADMIN.TEMPLATE_PATH_ADMIN.'images/logo_generic.png');
+$copyright_text = '<span id="copyright_poweredby" style="float: left;">v'.$PMDR->getConfig('pmd_version').'</span>';
 
 $template_header->set('javascript',$PMDR->getJavascript());
 

@@ -45,7 +45,7 @@ if($form->wasSubmitted('submit')) {
                 $PMDR->addMessage('success',$PMDR->getLanguage('user_account_email_confirm'));
                 $PMDR->get('Email_Templates')->send('user_registration',array('to'=>$user['user_email'],'user_id'=>$user['id']));
             } else {
-                $users->setPasswordVerificationCode($user['id'], LICENSE);
+                $users->setPasswordVerificationCode($user['id'], SECURITY_KEY);
                 $PMDR->get('Email_Templates')->send('password_reset_request',array('to'=>$user['user_email'],'variables'=>array('user_password_reminder_url'=>BASE_URL.MEMBERS_FOLDER."user_password_remind.php?id=$user[id]&verify=".md5($user['user_email'])),'user_id'=>$user['id']));
                 $PMDR->addMessage('success',$PMDR->getLanguage('user_password_remind_request_sent'));
             }

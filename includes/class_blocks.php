@@ -44,7 +44,8 @@ class Blocks extends TableGateway {
     */
     function getContent($id,$arguments=array()) {
         $block_class_name = ucfirst($id).'_Block';
-        if(!class_exists($block_class_name) AND file_exists(PMDROOT.'/includes/blocks/'.$args[0].'.php')) {
+        $args = $arguments;
+        if(!class_exists($block_class_name) AND isset($args[0]) AND file_exists(PMDROOT.'/includes/blocks/'.$args[0].'.php')) {
             require_once(PMDROOT.'/includes/blocks/'.$args[0].'.php');
         }
         if(class_exists($block_class_name)) {

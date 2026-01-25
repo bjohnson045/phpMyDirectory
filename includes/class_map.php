@@ -161,6 +161,21 @@ class Map {
     * Display a streetview map
     */
     var $streetView = true;
+    /**
+    * Map type
+    * @var string
+    */
+    var $mapType = 'G_NORMAL_MAP';
+    /**
+    * Info window trigger
+    * @var string click|mouseover
+    */
+    var $windowTrigger = 'click';
+    /**
+    * Viewport loader
+    * @var boolean
+    */
+    var $viewportLoader = false;
 
     /**
     * Map Class constructor
@@ -308,14 +323,14 @@ class Map {
     function createMarkerIcon($image, $image_shadow = '',$image_x = '',$image_y = '',$window_x = '',$window_y = '') {
         if(!($image_info = @getimagesize($image))) {
             if(DEBUG_MODE) {
-                trigger_error('createMarkerIcon - Can not read image '.$image_path,E_USER_WARNING);
+                trigger_error('createMarkerIcon - Can not read image '.$image,E_USER_WARNING);
             }
             return false;
         }
         if(!empty($image_shadow)) {
             if(!($image_shadow_info = @getimagesize($image_shadow))) {
                 if(DEBUG_MODE) {
-                    trigger_error('createMarkerIcon - Can not read image '.$image_shadow_path,E_USER_WARNING);
+                    trigger_error('createMarkerIcon - Can not read image '.$image_shadow,E_USER_WARNING);
                 }
                 return false;
             }
@@ -381,6 +396,62 @@ class Map {
     */
     function addScript($script) {
         $this->script = $script;
+    }
+
+    /**
+    * Get map header JS (override in subclass)
+    * @return string
+    */
+    function getHeaderJS() {
+        return '';
+    }
+
+    /**
+    * Get Map javascript (override in subclass)
+    * @return string
+    */
+    function getMapJS() {
+        return '';
+    }
+
+    /**
+    * Get the map code (override in subclass)
+    * @return string
+    */
+    function getMap() {
+        return '';
+    }
+
+    /**
+    * Get map URL (override in subclass)
+    * @return string
+    */
+    function getMapURL($address, $city = '', $state = '', $country = '', $zip = '') {
+        return '';
+    }
+
+    /**
+    * Get embeddable map URL (override in subclass)
+    * @return string
+    */
+    function getMapEmbedURL($address, $city = '', $state = '', $country = '', $zip = '') {
+        return '';
+    }
+
+    /**
+    * Get embeddable street view URL (override in subclass)
+    * @return string
+    */
+    function getMapEmbedStreetViewURL($latitude, $longitude) {
+        return '';
+    }
+
+    /**
+    * Get a static map image by coordinates (override in subclass)
+    * @return string
+    */
+    function getMapImageByCoords($latitude, $longitude) {
+        return '';
     }
 
     /**
@@ -527,13 +598,13 @@ class Map {
         return rawurlencode($address.' '.$city.' '.$state.' '.$zip.' '.$country);
     }
 
-    function getOutputVariables($address, $city, $state, $country, $zip, $latitude, $longitude, $title, $print=false) {
+    function getOutputVariables($address, $city, $state, $country, $zip, $latitude, $longitude, $title, $print=false, $listing=array()) {
         $variables = array();
         if($print) {
             $variables['map'] = '<img src="'.$this->getMapImageByCoords($latitude,$longitude).'" />';
         } elseif($this->PMDR->getConfig('map_display_type') == 'link') {
             $map_output = $this->PMDR->get('Template',PMDROOT.TEMPLATE_PATH.'blocks/listing_map_link.tpl');
-            $map_output->set('url',$this->getMapURL($address,$map_city,$map_state,$map_country,$zip));
+            $map_output->set('url',$this->getMapURL($address,$city,$state,$country,$zip));
             $variables['map_url'] = $map_output;
         } elseif($this->PMDR->getConfig('map_display_type') == 'embedded') {
             $map_output = $this->PMDR->get('Template',PMDROOT.TEMPLATE_PATH.'blocks/listing_map_embed.tpl');
@@ -543,17 +614,20 @@ class Map {
             }
             $variables['map'] = $map_output;
         } else {
-            $map_popup = $PMDR->get('Template',PMDROOT.TEMPLATE_PATH.'blocks/map_popup.tpl');
+            $map_popup = $this->PMDR->get('Template',PMDROOT.TEMPLATE_PATH.'blocks/map_popup.tpl');
             $map_popup->set('title',$title);
-            $map_popup->set('address',$PMDR->get('Locations')->formatAddress($listing['listing_address1'],$listing['listing_address2'],$map_city,$map_state,$map_country,$listing['listing_zip']));
+            $listing_address1 = isset($listing['listing_address1']) ? $listing['listing_address1'] : '';
+            $listing_address2 = isset($listing['listing_address2']) ? $listing['listing_address2'] : '';
+            $listing_zip = isset($listing['listing_zip']) ? $listing['listing_zip'] : $zip;
+            $map_popup->set('address',$this->PMDR->get('Locations')->formatAddress($listing_address1,$listing_address2,$city,$state,$country,$listing_zip));
             if($latitude != '0.0000000000' AND $longitude != '0.0000000000') {
                 $map_popup->set('directions_begin',$latitude.','.$longitude);
                 $this->addMarkerByCoords($longitude, $latitude, $title,$map_popup->render());
             } else {
                 $map_popup->set('directions_begin',$city.','.$state.','.$country.','.$zip);
                 if($this->addMarkerByAddress($address,$city,$state,$country,$zip,$title,$map_popup->render())) {
-                    $variables['latitude'] = $map->markers[0]['lat'];
-                    $variables['longitude'] = $map->markers[0]['lon'];
+                    $variables['latitude'] = $this->markers[0]['lat'];
+                    $variables['longitude'] = $this->markers[0]['lon'];
                 }
             }
             unset($map_popup);

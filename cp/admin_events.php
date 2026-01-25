@@ -137,28 +137,25 @@ if(!isset($_GET['action']) OR $_GET['action'] == 'search') {
     */
     
     //SELECT SQL_CALC_FOUND_ROWS events.*, l.title AS listing_title, l.id AS listing_id FROM ( SELECT e.id, e.title, e.listing_id, e.status, e.friendly_url, edd.date_start, edd.date_end FROM pmd_events e LEFT JOIN ( SELECT edo.* FROM ( SELECT event_id, date_start, date_end FROM pmd_events_dates ORDER BY date_start >= NOW() DESC, ABS(NOW() - date_start) ASC ) edo GROUP BY edo.event_id ) edd ON edd.event_id=e.id LIMIT 0,10 ) as events LEFT JOIN pmd_listings l ON events.listing_id=l.id
-    
-    
-    $records = $db->GetAll("SELECT SQL_CALC_FOUND_ROWS 
-        events.*, l.title AS listing_title, l.id AS listing_id 
+
+
+    $records = $db->GetAll("SELECT SQL_CALC_FOUND_ROWS
+        events.*, l.title AS listing_title, l.id AS listing_id
         FROM (
-            SELECT e.id, e.title, e.listing_id, e.status, e.friendly_url, edd.date_start, edd.date_end 
+            SELECT e.id, e.title, e.listing_id, e.status, e.friendly_url, edd.date_start, edd.date_end
             FROM ".T_EVENTS." e
             LEFT JOIN (
-                SELECT edo.* FROM (
+                SELECT edo.event_id, ed.date_start, ed.date_end FROM (
                     SELECT event_id FROM ".T_EVENTS_DATES." $where_dates ORDER BY date_start >= NOW() DESC, ABS(NOW() - date_start) ASC
-                ) edo 
+                ) edo
+                LEFT JOIN ".T_EVENTS_DATES." ed ON edo.event_id=ed.event_id
                 GROUP BY edo.event_id
-                LEFT JOIN (
-                    SELECT date_start, date_end FROM ".T_EVENTS_DATES." ed ON edo.event_id=ed.id
-                ) edd ON edd.
             ) eddc ON eddc.event_id=e.id
             $category_join
             LIMIT ?,?
         ) as events
         LEFT JOIN ".T_LISTINGS." l ON events.listing_id=l.id",array($paging->limit1,$paging->limit2)
-    );
-    */                    
+    );                    
 
                         
     $paging->setTotalResults($db->FoundRows());

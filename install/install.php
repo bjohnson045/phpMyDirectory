@@ -195,13 +195,28 @@ if(!isset($_POST['complete']) OR sizeof($errors) > 0) {
         $error = 1;
         $results[]['result'] = 'The PHP CURL extension is required.';
     }
-    if(!validionCube('5.0')) {
-        $error = 1;
-        $results[]['result'] = 'ionCube 5.0+ is required and is either not installed or is an old version.  Please see the phpMyDirectory manual for instructions or try the <a target="_blank" href="../ioncube/loader-wizard.php">ionCube wizard</a>.';
-    }
 
     $phpversion = phpversion();
 }
+
+// Initialize template variables
+if(!isset($message)) $message = '';
+if(!isset($install_instructions)) $install_instructions = '';
+if(!isset($results)) $results = array();
+if(!isset($errors)) $errors = array();
+
+// Initialize $_POST variables for form display
+$_POST['admin_email'] = $_POST['admin_email'] ?? '';
+$_POST['admin_pass'] = $_POST['admin_pass'] ?? '';
+$_POST['admin_pass2'] = $_POST['admin_pass2'] ?? '';
+$_POST['hostname'] = $_POST['hostname'] ?? '';
+$_POST['db_name'] = $_POST['db_name'] ?? '';
+$_POST['db_user'] = $_POST['db_user'] ?? '';
+$_POST['db_pass'] = $_POST['db_pass'] ?? '';
+$_POST['prefix'] = $_POST['prefix'] ?? '';
+$_POST['charset'] = $_POST['charset'] ?? 'utf8';
+$_POST['db_port'] = $_POST['db_port'] ?? '';
+
 include('./template/header.tpl');
 include('./template/install.tpl');
 include('./template/footer.tpl');

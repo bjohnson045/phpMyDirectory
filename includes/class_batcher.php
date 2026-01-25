@@ -5,6 +5,8 @@ class Batcher {
     var $run_count = 100;
     var $run_count_current = 0;
     var $source;
+    var $current;
+    var $total;
 
     function __construct($PMDR) {
         $this->PMDR = $PMDR;

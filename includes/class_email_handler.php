@@ -76,6 +76,10 @@ class Email_Handler {
     * @var array $log_data Additional data to add to the email log
     */
     var $log_data = array();
+    /**
+    * @var string $error Error message
+    */
+    var $error = '';
 
     /**
     * Email_Handler Constructor

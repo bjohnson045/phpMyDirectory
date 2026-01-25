@@ -3,9 +3,7 @@ define('PMD_SECTION','members');
 
 include ('../defaults.php');
 
-if(ADDON_DISCOUNT_CODES) {
-    $PMDR->get('Discount_Codes')->setURLCode();
-}
+$PMDR->get('Discount_Codes')->setURLCode();
 
 $PMDR->loadLanguage(array('user_invoices'));
 
@@ -85,7 +83,7 @@ if(!empty($active_gateways)) {
     // If the order does not have a discount applied to it yet, or its the first invoice for the order, or the invoice is not associated
     // with an order, we allow a discount code to be applied as long as the addon is available.
     $order_invoice_count = is_null($invoice['order_id']) ? 0 : $db->GetOne("SELECT COUNT(*) FROM ".T_INVOICES." WHERE order_id=?",array($invoice['order_id']));
-    if(ADDON_DISCOUNT_CODES AND ($order_invoice_count < 2 OR empty($invoice['order_discount_code']))) {
+    if($order_invoice_count < 2 OR empty($invoice['order_discount_code'])) {
         $form->addFieldSet('discount_codes',array('legend'=>$PMDR->getLanguage('user_invoices_discount_code')));
         $form->addField('discount_code','text',array('label'=>$PMDR->getLanguage('user_invoices_discount_code'),'fieldset'=>'discount_code'));
         if($discount_code = $PMDR->get('Discount_Codes')->getURLCode()) {

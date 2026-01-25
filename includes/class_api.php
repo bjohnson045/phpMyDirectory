@@ -46,6 +46,16 @@ class API {
     * @var object
     */
     protected $db;
+    /**
+    * Allowed IP addresses
+    * @var array
+    */
+    protected $allowed_ip_addresses = array();
+    /**
+    * Request data
+    * @var array
+    */
+    protected $request = array();
 
     /**
     * API constructor

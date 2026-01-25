@@ -14,6 +14,11 @@ class Nested_Set {
     * @var object
     */
     var $db;
+    /**
+    * Table name
+    * @var string
+    */
+    var $table = '';
 
     /**
     * Nested set constructor

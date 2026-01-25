@@ -3,9 +3,7 @@ define('PMD_SECTION', 'public');
 
 include ('./defaults.php');
 
-if(defined('ADDON_DISCOUNT_CODES') AND ADDON_DISCOUNT_CODES) {
-    $PMDR->get('Discount_Codes')->setURLCode();
-}
+$PMDR->get('Discount_Codes')->setURLCode();
 
 // Load the language variables required on this page
 $PMDR->loadLanguage(array('public_index','public_browse_categories','public_browse_locations','email_templates'));

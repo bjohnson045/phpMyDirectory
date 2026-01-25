@@ -5,6 +5,22 @@
  */
 class Tree_Gateway extends Nested_Set {
     /**
+    * Type identifier (category/location)
+    * @var string
+    */
+    var $type = '';
+
+    /**
+    * Get URL for a node (override in subclass)
+    * @param int $id
+    * @param string $path
+    * @return string
+    */
+    function getURL($id, $path) {
+        return '';
+    }
+
+    /**
     * Get the total count (including sub nodes) of a node
     * @param int $id
     * @return int

@@ -7,7 +7,7 @@ $PMDR->get('Authentication')->authenticate();
 
 $PMDR->loadLanguage(array('user_blog','email_templates'));
 
-if(!$PMDR->getConfig('blog_user_posts') OR !ADDON_BLOG) {
+if(!$PMDR->getConfig('blog_user_posts')) {
     redirect_url(BASE_URL.MEMBERS_FOLDER);
 }
 

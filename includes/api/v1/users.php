@@ -1,5 +1,8 @@
 <?php
 class Users_API {
+    var $PMDR;
+    var $db;
+
     function __construct($PMDR, $parameters = array()) {
         $this->PMDR = $PMDR;
         $this->db = $this->PMDR->get('DB');

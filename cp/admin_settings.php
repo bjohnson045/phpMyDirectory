@@ -55,10 +55,6 @@ if(isset($_GET['delete'])) {
 
 $non_empty = array('category_mod_rewrite','location_mod_rewrite');
 foreach($settings as $key=>$setting) {
-    if($setting['varname'] == 'reciprocal_field' AND !ADDON_LINK_CHECKER) {
-        unset($settings[$key]);
-        continue;
-    }
     if($setting['optioncode_type'] == 'select') {
         if($setting['optioncode_parse_type'] == 'static') {
             $options = explode("\r\n",trim($setting['optioncode'],"\r\n"));
